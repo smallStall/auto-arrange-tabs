@@ -1,0 +1,63 @@
+{
+  "name": "auto-arrange-tabs",
+	"displayName": "auto-arrange-tabs",
+	"description": "Automatically moves the used tabs on the far left.",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.65.0"
+	},
+	"categories": [
+		"Other"
+	],
+  "keywords": [
+    "tabs",
+    "sort",
+    "order",
+    "arrange",
+    "panels"
+  ],
+  "icon": "public/icon.png",
+	"activationEvents": [
+        "onCommand:auto-arrange-tabs"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "auto-arrange-tabs",
+				"title": "auto-arrange-tabs"
+			}
+		],
+    "configuration": {
+      "title": "Auto-Arrange-Tabs",
+      "properties": {
+        "auto-arrage-tabs.movetimes": {
+          "type": "number",
+          "scope": "resource",
+          "default": 10,
+          "markdowDescription": "Specifies the number of seconds to move the tab from activation.",
+          "maximum": 99,
+          "minimum": 1
+        }  
+      }      
+    }
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+        "@types/vscode": "^1.65.0",
+        "@types/glob": "^7.2.0",
+        "@types/mocha": "^9.1.0",
+        "@types/node": "14.x",
+        "eslint": "^8.9.0",
+        "glob": "^7.2.0",
+        "mocha": "^9.2.1",
+        "typescript": "^4.5.5",
+        "@vscode/test-electron": "^2.1.2"
+    }
+
+
+}
