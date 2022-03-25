@@ -1,7 +1,12 @@
 {
   "name": "auto-arrange-tabs",
-	"displayName": "auto-arrange-tabs",
-	"description": "Automatically moves the used tabs on the far left.",
+  "publisher": "smallStall",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/smallStall/auto-arrange-tabs"
+  },
+	"displayName": "Auto-Arrange-Tabs",
+	"description": "This extension makes cluttered tabs clean automatically. It moves the used tabs on the far left.",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.65.0"
@@ -16,32 +21,37 @@
     "arrange",
     "panels"
   ],
-  "icon": "public/icon.png",
 	"activationEvents": [
-        "onCommand:auto-arrange-tabs"
+     "onStartupFinished"
 	],
 	"main": "./extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "auto-arrange-tabs",
-				"title": "auto-arrange-tabs"
-			}
-		],
     "configuration": {
       "title": "Auto-Arrange-Tabs",
       "properties": {
-        "auto-arrage-tabs.movetimes": {
+        "auto-arrage-tabs.time": {
           "type": "number",
           "scope": "resource",
           "default": 10,
           "markdowDescription": "Specifies the number of seconds to move the tab from activation.",
-          "maximum": 99,
+          "maximum": 999,
           "minimum": 1
-        }  
-      }      
+        }
+
+      },
+      "auto-arrage-tabs.fixed-left-tabs": {
+        "comment": "feature-property",
+        "type": "number",
+        "scope": "resource",
+        "default": 2,
+        "markdowDescription": "Specifies the number of fixed left tabs. They don't move when time is reached",
+        "maximum": 9,
+        "minimum": 1
+      }
+  
     }
 	},
+  "icon": "icon.png",
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "npm run lint",
@@ -58,6 +68,4 @@
         "typescript": "^4.5.5",
         "@vscode/test-electron": "^2.1.2"
     }
-
-
 }
