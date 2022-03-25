@@ -8,13 +8,9 @@ Automatically moves the used tabs on the far left.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.movetimes`: enable/disable this extension
+* `auto-arrage-tabs.time`: The number of seconds to move the tab from activation.
 
 
 
