@@ -9,20 +9,13 @@ const vscode = require("vscode");
  * @param {vscode.ExtensionContext} context
  */
 let timeout;
-function activate(context) {
-  /*
-     context.subscriptions.push(vscode.commands.registerCommand("auto-arrange-tabs", () => {
-         vscode.commands.executeCommand("moveActiveEditor", {
-             to: "first",
-             by: "tab",
-         });
-     }));
-     */
-  const config = vscode.workspace.getConfiguration("auto-arrage-tabs");
-  if(!config || !vscode.window.activeTextEditor){
+let registration;
+function activate() {
+  let config = vscode.workspace.getConfiguration("auto-arrage-tabs");
+  if (!config) {
     return;
   }
-  let disposable = vscode.window.onDidChangeActiveTextEditor(() => {
+  function leftTab() {
     if (timeout) {
       clearTimeout(timeout);
     }
@@ -32,8 +25,15 @@ function activate(context) {
         by: "tab",
       });
     }, config.get("time") * 1000);
+  }
+  vscode.workspace.onDidChangeConfiguration(() => {
+    if (registration) {
+      registration.dispose();
+      config = vscode.workspace.getConfiguration("auto-arrage-tabs");
+      registration = vscode.window.onDidChangeActiveTextEditor(() => leftTab());
+    }
   });
-  context.subscriptions.push(disposable);
+  registration = vscode.window.onDidChangeActiveTextEditor(() => leftTab());
 }
 function deactivate() {}
 

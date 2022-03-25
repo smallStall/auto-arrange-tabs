@@ -7,7 +7,7 @@
   },
 	"displayName": "Auto-Arrange-Tabs",
 	"description": "This extension makes cluttered tabs clean automatically. It moves the used tabs on the far left.",
-	"version": "0.0.2",
+	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.65.0"
 	},
