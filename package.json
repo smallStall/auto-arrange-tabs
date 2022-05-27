@@ -7,9 +7,9 @@
   },
 	"displayName": "Auto-Arrange-Tabs",
 	"description": "This extension makes cluttered tabs clean automatically. It moves the used tabs on the far left.",
-	"version": "0.0.4",
+	"version": "0.1.0",
 	"engines": {
-		"vscode": "^1.65.0"
+		"vscode": "^1.67.0"
 	},
 	"categories": [
 		"Other"
@@ -29,26 +29,23 @@
     "configuration": {
       "title": "Auto-Arrange-Tabs",
       "properties": {
-        "auto-arrage-tabs.time": {
+        "auto-arrage-tabs.seconds": {
           "type": "number",
           "scope": "resource",
-          "default": 10,
+          "default": 8,
           "markdowDescription": "Specifies the number of seconds to move the tab from activation.",
           "maximum": 999,
           "minimum": 1
+        },
+        "auto-arrage-tabs.fixTabs": {
+          "type": "number",
+          "scope": "resource",
+          "default": 3,
+          "markdowDescription": "Specifies number of fixed tabs from left side. They don't move when time is reached",
+          "maximum": 9,
+          "minimum": 1
         }
-
-      },
-      "auto-arrage-tabs.fixed-left-tabs": {
-        "comment": "feature-property",
-        "type": "number",
-        "scope": "resource",
-        "default": 2,
-        "markdowDescription": "Specifies the number of fixed left tabs. They don't move when time is reached",
-        "maximum": 9,
-        "minimum": 1
-      }
-  
+      }  
     }
 	},
   "icon": "icon.png",

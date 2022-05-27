@@ -15,16 +15,30 @@ function activate() {
   if (!config) {
     return;
   }
+
   function leftTab() {
     if (timeout) {
       clearTimeout(timeout);
     }
     timeout = setTimeout(() => {
+      const activeGroup = vscode.window.tabGroups.all.filter(group => group.isActive)[0];
+      if(activeGroup){
+        const activeTab = activeGroup.activeTab;
+        let i = 0;
+        for(i = 0; i < activeGroup.tabs.length; i ++){
+          if(activeTab.label === activeGroup.tabs[i].label){
+            break;
+          }
+        }
+        if (i < config.get("fixTabs")){
+          return;
+        }
+      }
       vscode.commands.executeCommand("moveActiveEditor", {
         to: "first",
         by: "tab",
       });
-    }, config.get("time") * 1000);
+    }, config.get("seconds") * 1000);
   }
   vscode.workspace.onDidChangeConfiguration(() => {
     if (registration) {
