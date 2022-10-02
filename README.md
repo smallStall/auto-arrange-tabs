@@ -22,3 +22,7 @@ Users appreciate release notes as you update your extension.
 ### 0.0.1
 
 Initial release.
+
+### 0.4.0
+
+A pinned tab is now unmoved.

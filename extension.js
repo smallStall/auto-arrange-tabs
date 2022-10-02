@@ -10,6 +10,28 @@ const vscode = require("vscode");
  */
 let timeout;
 let registration;
+
+function getNotPinnedNum(activeGroup) {
+  let i;
+  for (i = 0; i < activeGroup.tabs.length; i++) {
+    if (!activeGroup.tabs[i].isPinned) {
+      break;
+    }
+  }
+  return i;
+}
+
+function getActiveTabNum (activeGroup) {
+  const activeTab = activeGroup.activeTab;
+  let i;
+  for (i = 0; i < activeGroup.tabs.length; i++) {
+    if (activeTab.label === activeGroup.tabs[i].label) {
+      break;
+    }
+  }
+  return i;
+}
+
 function activate() {
   let config = vscode.workspace.getConfiguration("auto-arrage-tabs");
   if (!config) {
@@ -21,22 +43,25 @@ function activate() {
       clearTimeout(timeout);
     }
     timeout = setTimeout(() => {
-      const activeGroup = vscode.window.tabGroups.all.filter(group => group.isActive)[0];
-      if(activeGroup){
-        const activeTab = activeGroup.activeTab;
-        let i = 0;
-        for(i = 0; i < activeGroup.tabs.length; i ++){
-          if(activeTab.label === activeGroup.tabs[i].label){
-            break;
-          }
-        }
-        if (i < config.get("fixTabs")){
-          return;
-        }
+      const activeGroup = vscode.window.tabGroups.all.filter(
+        (group) => group.isActive
+      )[0];
+      if (!activeGroup) {
+        return;
       }
+
+      //ラベルが合っているタブ番号を探す
+      const tabNum = getActiveTabNum(activeGroup);
+      if (tabNum < config.get("fixTabs")) {
+        return;
+      }
+
+      const notPinnedNum = getNotPinnedNum(activeGroup);
+      console.log(notPinnedNum);
       vscode.commands.executeCommand("moveActiveEditor", {
-        to: "first",
+        to: "left",
         by: "tab",
+        value: tabNum - notPinnedNum
       });
     }, config.get("seconds") * 1000);
   }
@@ -50,6 +75,7 @@ function activate() {
   registration = vscode.window.onDidChangeActiveTextEditor(() => leftTab());
 }
 function deactivate() {}
+
 
 module.exports = {
   activate,
