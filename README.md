@@ -10,10 +10,8 @@ Automatically moves the used tabs on the far left.
 
 This extension contributes the following settings:
 
-* `auto-arrage-tabs.seconds`: The number of seconds to move the tab from activation.
-* `auto-arrage-tabs.fixTabs`: The number of fixed tabs from left side. They don't move when time is reached.
-
-
+* `auto-arrange-tabs.millis`: The number of milliseconds to move the tab from activation.
+* `auto-arrange-tabs.fixTabs`: The number of fixed tabs from left side. They don't move when time is reached.
 
 ## Release Notes
 
