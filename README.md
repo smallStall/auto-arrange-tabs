@@ -10,8 +10,8 @@ Automatically moves the used tabs on the far left.
 
 This extension contributes the following settings:
 
-* `auto-arrange-tabs.millis`: The number of milliseconds to move the tab from activation.
-* `auto-arrange-tabs.fixTabs`: The number of fixed tabs from left side. They don't move when time is reached.
+- `auto-arrange-tabs.millis`: The number of milliseconds to move the tab from activation.
+- `auto-arrange-tabs.fixTabs`: The number of fixed tabs from left side. They don't move when time is reached.
 
 ## Release Notes
 
@@ -24,3 +24,8 @@ Initial release.
 ### 0.4.0
 
 A pinned tab is now unmoved.
+
+### 0.5.0
+
+Change activation arg to milliseconds; allow 0 delay. (Move my tab now!)
+Thanks @KDPRoss
