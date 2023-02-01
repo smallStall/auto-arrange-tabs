@@ -17,7 +17,7 @@
           "type": "number"
         },
         "auto-arrange-tabs.millis": {
-          "default": 6,
+          "default": 3000,
           "markdowDescription": "Specifies the number of milliseconds to move the tab from activation.",
           "maximum": 100000,
           "minimum": 0,
@@ -65,5 +65,5 @@
     "pretest": "npm run lint",
     "test": "node ./test/runTest.js"
   },
-  "version": "0.4.0"
+  "version": "0.5.0"
 }
